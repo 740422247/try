@@ -11,7 +11,8 @@ const Pie = () => import(/* webpackChunkName: "group-Calender" */ '@/components/
 const StarSky = () => import(/* webpackChunkName: "group-Calender" */ '@/components/StarSky')
 const Snow = () => import(/* webpackChunkName: "group-Calender" */ '@/components/snow')
 const Bubble = () => import(/* webpackChunkName: "group-Calender" */ '@/components/Bubble')
-const Webgl = () => import(/* webpackChunkName: "group-Calender" */ '@/components/three')
+const WebGl = () => import(/* webpackChunkName: "group-Calender" */ '@/components/three')
+const Flow = () => import(/* webpackChunkName: "group-Calender" */ '@/components/flow')
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +36,11 @@ export default new Router({
       path: '/comp',
       name: 'Comp',
       component: Comp
+    },
+    {
+      path: '/webgl',
+      name: 'WebGl',
+      component: WebGl
     },
     {
       path: '/purdah',
@@ -67,10 +73,11 @@ export default new Router({
       component: Bubble
     },
     {
-      path: '/webgl',
-      name: 'Webgl',
-      component: Webgl
+      path: '/flow',
+      name: 'Flow',
+      component: Flow
     },
+
     {
       path: '/calender',
       name: 'Calender',

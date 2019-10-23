@@ -21,7 +21,6 @@ export default {
       { name: "小米", value: 1234 },
       { name: "华为", value: 3254 },
       { name: "百度", value: 2546 },
-      { name: "阿里巴巴", value: 3252 },
       { name: "阿里巴巴", value: 2222 }
     ],
     color: [

@@ -12,6 +12,7 @@ export default {
   data: () => ({
     width: 1200,
     height: 800,
+    ticks: 10,
     yMax: 0,
     chart: {
       xAxis: {
@@ -28,7 +29,7 @@ export default {
         ]
       },
       yAxis: {
-        data: [1000, 10000, 12001,200]
+        data: [1000, 10000, 12001, 200, 5255, 23485.5, 12580, 1145, 12304.125]
       }
     }
   }),
@@ -43,6 +44,7 @@ export default {
     canvasBar() {
       let barChart = document.querySelector(".bar-chart");
       let bar = barChart.getContext("2d"); //建立2D模型
+
       barChart.width = this.width;
       barChart.height = this.height;
       this.coordinate(bar);
@@ -79,7 +81,7 @@ export default {
       // 刻度线长度
       const yLength = 8;
       // 刻度数量
-      const ticks = 8;
+      const ticks = this.ticks;
       // 刻度的步长
       const yStep = (yStart - yEnd) / ticks;
       // 刻度绘制
@@ -102,7 +104,12 @@ export default {
         bar.strokeStyle = "#ccc";
         bar.stroke();
         // 绘制label
-        bar.fillText(yStepLabel * i, 100 - 15, yStart - yStep * i);
+        console.log(yStepLabel * i);
+        bar.fillText(
+          Math.floor(100 * (yStepLabel * i)) / 100,
+          100 - 15,
+          yStart - yStep * i
+        );
       }
       // console.log(this.chart.yAxis.data);
     },
@@ -120,8 +127,7 @@ export default {
       // 最大值的商
       const consult = Math.floor(arrMaxFirstInt / ticks);
       // 获取下一个可以除尽8的值
-      const nextMax = this.getNextMaxMinStep(arrMax,ticks)//this.getNextMax(arrMaxFirstInt, consult, power, ticks);
-      console.log(nextMax)
+      const nextMax = this.getNextMaxMinStep(Math.floor(arrMax), ticks); //this.getNextMax(arrMaxFirstInt, consult, power, ticks);
       this.yMax = nextMax;
       // step值
       const yStepLabel = nextMax / ticks;
@@ -138,9 +144,9 @@ export default {
     },
 
     // 直接获取下一个可以除尽ticks得值
-    getNextMaxMinStep(arrMax,ticks){
-      for(let i = arrMax;i<arrMax+ticks;i++){
-        if(!((i*100)%8)){
+    getNextMaxMinStep(arrMax, ticks) {
+      for (let i = arrMax; i < arrMax + ticks; i++) {
+        if (!((i * 100) % 8)) {
           return i;
         }
       }

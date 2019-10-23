@@ -5,7 +5,7 @@
         导航
         <ul class="nav-container">
           <li @click="linkTo('/notifycation')">notifycation</li>
-          <li>picker</li>
+          <li @click="linkTo('/flow')">Flow</li>
           <li @click="linkTo('/webgl')">Webgl</li>
           <li @click="linkTo('/calender')">calender(日历)</li>
           <li @click="linkTo('/bar')">bar</li>
