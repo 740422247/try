@@ -13,9 +13,12 @@ const Snow = () => import(/* webpackChunkName: "group-Calender" */ '@/components
 const Bubble = () => import(/* webpackChunkName: "group-Calender" */ '@/components/Bubble')
 const WebGl = () => import(/* webpackChunkName: "group-Calender" */ '@/components/three')
 const Flow = () => import(/* webpackChunkName: "group-Calender" */ '@/components/flow')
+const Map = () => import(/* webpackChunkName: "group-Calender" */ '@/components/map')
+const ScreenPc = () => import(/* webpackChunkName: "group-Calender" */ '@/components/screenPc')
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -36,6 +39,11 @@ export default new Router({
       path: '/comp',
       name: 'Comp',
       component: Comp
+    },
+    {
+      path: '/map',
+      name: 'Map',
+      component: Map
     },
     {
       path: '/webgl',
@@ -66,6 +74,11 @@ export default new Router({
       path: '/snow',
       name: 'Snow',
       component: Snow
+    },
+    {
+      path: '/screenPc',
+      name: 'ScreenPc',
+      component: ScreenPc
     },
     {
       path: '/bubble',

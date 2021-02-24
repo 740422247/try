@@ -8,9 +8,12 @@ import addr from './addr'
 import mixin from './mixin/mixinDemo'
 import AddrPicker from './picker'
 import notify from './plug/notify'
+import formate from "./common/formate"
+
 
 Vue.use(AddrPicker)
 Vue.use(notify)
+Vue.use(formate)
 
 Vue.config.productionTip = false
 Vue.use(addr)
@@ -20,5 +23,13 @@ new Vue({
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
 })
+Vue.filter('formate',function(val,flag){
+  switch (flag){
+    case 'money':
+      return formate.formateMoney(val)
+    default:
+      return formate.formateNum(val)
+  }
+});

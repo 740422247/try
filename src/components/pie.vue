@@ -8,6 +8,17 @@
 import { link } from "fs";
 export default {
   data: () => ({
+    // 测试
+    mock: [
+      { name: "三星", total: 1211, Forest: 221, Steppe: 525, Desert: 211 },
+      { name: "百度", total: 1211, Forest: 221, Steppe: 525, Desert: 211 },
+      { name: "谷歌", total: 1211, Forest: 221, Steppe: 525, Desert: 211 },
+      { name: "微软", total: 1211, Forest: 221, Steppe: 525, Desert: 211 },
+      { name: "苹果", total: 1211, Forest: 221, Steppe: 525, Desert: 211 },
+      { name: "阿里", total: 1211, Forest: 221, Steppe: 525, Desert: 211 }
+    ],
+    // 测试
+
     c: undefined,
     ctx: undefined,
     width: 1200,
@@ -18,7 +29,7 @@ export default {
     sumValue: 0,
     centerTitle: "汇总金额(元)",
     data: [
-      { name: "小米", value: 1234 },
+      { name: "小米", value: 3160 },
       { name: "华为", value: 3254 },
       { name: "百度", value: 2546 },
       { name: "阿里巴巴", value: 2222 }
@@ -33,11 +44,11 @@ export default {
       "#1dd1a1",
       "#188BEF"
     ],
-    grdColor:[
-      {start:'#FD387E',end:'#FFA878'},
-      {start:'#0066FF',end:'#5D9EFF'},
-      {start:'#1EC250',end:'#A2EA8E'},
-      {start:'#FDA701',end:'#FED501'},
+    grdColor: [
+      { start: "#FD387E", end: "#FFA878" },
+      { start: "#0066FF", end: "#5D9EFF" },
+      { start: "#1EC250", end: "#A2EA8E" },
+      { start: "#FDA701", end: "#FED501" }
     ]
   }),
   mounted() {
@@ -46,7 +57,25 @@ export default {
   methods: {
     init() {
       this.initPie();
+      this.test();
     },
+    // 测试
+    test() {
+      const data = {};
+      this.mock.forEach((item, index) => {
+        if (!index) {
+          for (let key in item) {
+            data[key] = [];
+          }
+        }
+        for (let key in data) {
+          data[key].push(item[key]);
+        }
+      });
+
+      console.log("data:", data);
+    },
+
     initPie() {
       // 中心点位计算
       this.centerX = this.width / 2;
@@ -164,10 +193,10 @@ export default {
         );
 
         var grd = this.ctx.createLinearGradient(
-          this.centerX + bigCircleR*Math.cos(item.startScale*Math.PI*2),
-          this.centerY + bigCircleR*Math.sin(item.startScale*Math.PI*2),
-          this.centerY + bigCircleR*Math.cos(item.endScale*Math.PI*2),
-          this.centerY + bigCircleR*Math.sin(item.endScale*Math.PI*2),
+          this.centerX + bigCircleR * Math.cos(item.startScale * Math.PI * 2),
+          this.centerY + bigCircleR * Math.sin(item.startScale * Math.PI * 2),
+          this.centerY + bigCircleR * Math.cos(item.endScale * Math.PI * 2),
+          this.centerY + bigCircleR * Math.sin(item.endScale * Math.PI * 2)
         );
         grd.addColorStop(0, this.grdColor[index % this.grdColor.length].start);
         grd.addColorStop(1, this.grdColor[index % this.grdColor.length].end);

@@ -13,35 +13,46 @@
           <li @click="linkTo('/starSky')">starSky</li>
           <li @click="linkTo('/snow')">Snow</li>
           <li @click="linkTo('/bubble')">bubble</li>
+          <li @click="linkTo('/map')">Map</li>
+          <li @click="linkTo('/screenPc')">screenPc</li>
         </ul>
       </div>
       <div class="nav-slider">导航</div>
       <div class="nav-slider">导航</div>
+
     </div>
 
     <h2 class="title">WELCOME</h2>
+    <picker></picker>
 
-    <h3>取色板</h3>
+    <h3>{{n | formate('money')}}</h3>
     <canvas id="demo" style="margin:0 auto;"></canvas>
   </div>
 </template>
 <script>
 import store from "../store/store";
+import picker from "./component.vue"
 export default {
   data: () => ({
     num: 20,
+    n:'4545645613661232.253',
     ademo: undefined
   }),
+  components:{picker},
   mounted() {
     this.init();
   },
+
   methods: {
     linkTo(linkStr) {
       this.$router.push({ path: linkStr });
     },
+
     init() {
       this.initDemo();
+
     },
+
     initDemo() {
       var demo = document.querySelector("#demo");
       this.ademo = demo.getContext("2d");
@@ -57,9 +68,15 @@ export default {
       }
       this.ademo.clearRect(0, 0, 500, 500);
       this.ademo.beginPath();
-      this.ademo.fillStyle = 'red'//"rgba(0,0,0," + (1 - this.num / 500) + ")";
-      this.ademo.arc(this.num, this.num, 2, -2 * Math.PI*0.25, 2 * Math.PI*0.5);
-      this.ademo.lineTo(this.num-30,this.num-30);
+      this.ademo.fillStyle = "red"; //"rgba(0,0,0," + (1 - this.num / 500) + ")";
+      this.ademo.arc(
+        this.num,
+        this.num,
+        2,
+        -2 * Math.PI * 0.25,
+        2 * Math.PI * 0.5
+      );
+      this.ademo.lineTo(this.num - 30, this.num - 30);
       this.ademo.closePath();
       this.ademo.fill();
       window.requestAnimationFrame(this.fillImg.bind());
